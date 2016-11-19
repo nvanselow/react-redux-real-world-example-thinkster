@@ -1,7 +1,11 @@
 import { createStore } from 'redux';
 import { TOGGLE } from '../constants/actions';
 
-const defaultState = { checked: false };
+const defaultState = {
+  checked: false,
+  appName: 'conduit',
+  articles: null
+};
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
