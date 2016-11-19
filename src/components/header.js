@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-const Header = (props) => {
+const Header = ({ appName }) => {
   return (
     <nav className="navbar navbar-light">
       <div className="container">
         <a className="navbar-brand">
-          { props.appName.toLowerCase() }
+          { appName.toLowerCase() }
         </a>
       </div>
     </nav>

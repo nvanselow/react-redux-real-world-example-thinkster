@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
 import './App.css';
 import Store from './stores/default';
 import { TOGGLE } from './constants/actions';
 import Header from './components/header';
+import Home from './components/home/home';
 
 const mapStateToProps = state => ({
   appName: state.appName
@@ -26,31 +26,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <hr />
+      <div>
+        <Header appName={this.props.appName} />
         <div>
-          <h1>To-Dos</h1>
-          <div>
-            Learn Redux
-            <input
-              type="checkbox"
-              checked={!!this.state.checked}
-              onClick={App.onClick}
-            />
-          </div>
-          {
-            this.state.checked ? (<h2>Done!</h2>) : null
-          }
+          <Home />
         </div>
-
-        <h1>{this.props.appName}</h1>
       </div>
     );
   }
