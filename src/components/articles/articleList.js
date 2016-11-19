@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ArticlePreview from './articlePreview';
+
 const ArticleList = ({ articles }) => {
   if (!articles) {
     return (
@@ -20,9 +22,9 @@ const ArticleList = ({ articles }) => {
   return (
     <div>
       {
-        articles.map((article) => {
+        articles.map((article, index) => {
           return (
-            <h2>{ article.title }</h2>
+            <ArticlePreview article={article} key={index} />
           );
         })
       }
