@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import Store from './stores/default';
 import { TOGGLE } from './constants/actions';
 import Header from './components/header';
-import Home from './components/home/home';
 
 const mapStateToProps = state => ({
-  appName: state.appName
+  appName: state.common.appName,
 });
 
 class App extends Component {
@@ -29,11 +28,16 @@ class App extends Component {
       <div>
         <Header appName={this.props.appName} />
         <div>
-          <Home />
+          {this.props.children}
         </div>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  appName: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default connect(mapStateToProps, () => ({}))(App);

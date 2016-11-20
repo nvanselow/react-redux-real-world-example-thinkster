@@ -1,27 +1,17 @@
-import { createStore, applyMiddleware } from 'redux';
-import { TOGGLE, HOME_PAGE_LOADED } from '../constants/actions';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { promiseMiddleware } from '../middleware/promiseMiddleware';
+import auth from '../reducers/auth';
+import common from '../reducers/common';
+import home from '../reducers/home';
 
-const defaultState = {
-  checked: false,
-  appName: 'conduit',
-  articles: null,
-};
+const reducer = combineReducers({
+  auth,
+  common,
+  home,
+});
 
-const reducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case TOGGLE:
-      return { ...state, checked: !state.checked };
-    case HOME_PAGE_LOADED:
-      return {
-        ...state,
-        articles: action.payload.articles,
-      };
-    default:
-      return state;
-  }
-};
+const middleware = applyMiddleware(promiseMiddleware);
 
-const Store = createStore(reducer, applyMiddleware(promiseMiddleware));
+const Store = createStore(reducer, middleware);
 
 export default Store;
